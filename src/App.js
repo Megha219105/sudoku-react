@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { render } from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
+import Home from './components/Home';
+import { Index, DifficultyDialog } from './components/Main';
+import Store from './components/Store';
+import Game from './components/SudokuGame';
+
+  
 function App() {
+    if (localStorage.currentGame) {
+      Store.dispatch({type: 'RESUME_GAME'});
+    };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+    <Router>
+      <Switch>
+      <Route exact path="/" component={Index} />
+      <Route path="/play" component={Game} />
+      <Route path="/new-game" component={DifficultyDialog} />
+      </Switch>
+  </Router>
+  </React.Fragment>
   );
-}
+  };
+
 
 export default App;
