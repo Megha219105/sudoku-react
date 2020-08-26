@@ -1,2 +1,4 @@
 
-#This is a Sudoku Game with React app
+#Sudoku Game
+
+This is a demo Sudoku Game built using React and Redux. 
